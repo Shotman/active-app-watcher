@@ -1,5 +1,5 @@
 'use strict'
-const activeApp = require('active-app')
+const monitor = require('active-window')
 const EventEmitter = require('events').EventEmitter
 const equal = require('deep-equal')
 
@@ -15,7 +15,7 @@ class ActiveAppWatcher extends EventEmitter {
 
   tick() {
     let self = this
-    activeApp((err, app) => {
+    monitor.getActiveWindow((err, app) => {
       if (err) {
         return self.emit('error', err)
       }
